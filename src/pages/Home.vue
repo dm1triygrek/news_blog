@@ -1,21 +1,46 @@
 <script setup>
+import { ref, onMounted } from 'vue';
 import { useRootStore } from '@/stores/root';
 import { storeToRefs } from "pinia";
 import { RouterLink } from "vue-router";
+import axios from 'axios';
+import {  POSTS_URL } from '../constants'
 
 const rootStore = useRootStore();
-rootStore.getPosts();
-
-
 const { posts } = storeToRefs(rootStore);
 
+
+const isPostsLoaded = ref(false);
+
+const loadPosts = async () => {
+  if (!isPostsLoaded.value) {
+    await rootStore.getPosts();
+    isPostsLoaded.value = true;
+  }
+};
+
+const deletePost = async (postId) => {
+  try {
+    await axios.delete(`${POSTS_URL}/${postId}`)
+    // .then(response => {
+    //     console.log(`Deleted post with ID ${postId}`);
+
+    // })
+    rootStore.removePost(postId); 
+    //await rootStore.getPosts(); 
+  } catch (error) {
+    console.error('Error deleting post:', error);
+  }
+};
+
+onMounted(loadPosts);
 </script>
 
 <template>
     <div class="root">
         <div class="header">
             <h1 class="news_header">Новости</h1>
-            <el-button class="add_news"><img class="add_img" src="../assets/img/image 1.png" alt="Добавить">Добавить новость</el-button>
+            <el-button class="add_news"><el-icon :size="25"><Plus /></el-icon>Добавить новость</el-button>
         </div>
         <div class="news_cards">
             
@@ -27,8 +52,8 @@ const { posts } = storeToRefs(rootStore);
                         <span>{{ post.title }}</span>
                     </RouterLink>
                     <div class="news_buttons">
-                        <el-button class="change_button" text><img src="../assets/img/image 2.png" alt="Изменить"></el-button>
-                        <el-button class="delete_button" text><img src="../assets/img/image 3.png" alt="Удалить"></el-button>
+                        <el-button class="change_button" text><el-icon :size="25"><Edit /></el-icon></el-button>
+                        <el-button class="delete_button" text @click="deletePost(post.id)"><el-icon :size="25"><Delete /></el-icon></el-button>
                     </div>
                     
                   </div>
@@ -40,7 +65,5 @@ const { posts } = storeToRefs(rootStore);
 </template>
 
 <style lang="sass" scoped>
-@import '../assets/styles/main'
-
 
 </style>

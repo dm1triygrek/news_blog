@@ -1,29 +1,33 @@
 <script setup>
+import { ref, onMounted } from 'vue';
 import { useRootStore } from '@/stores/root';
 import { storeToRefs } from "pinia";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRoute } from "vue-router";
 
-
+const route = useRoute();
 const rootStore = useRootStore();
-
 
 const { posts, comments } = storeToRefs(rootStore);
 
-rootStore.getComments();
+const postId = Number(route.params.rid);
+const post = posts.value.find((p) => p.id === postId);
+console.log('Post ID:', postId);
+if (post) {
+  rootStore.getComments(postId);
+}
 
-  
 </script>
 
 <template>
     <div class="header">
         <h1 class="news_header">Новости</h1>
         <RouterLink :to="`/`">
-          <el-button class="back"><img class="back_img" src="../assets/img/image 10.png" alt="Назад"></el-button>
+          <el-button class="back"><el-icon :size="25"><Back /></el-icon></el-button>
         </RouterLink>
     </div>
 
-    <div v-for="post in posts" :key="post.id" class="addit_news">
-      <el-card v-show="$route.path==`/news/${post.id}`" class="box-card">
+    <div v-if="post" class="addit_news">
+      <el-card class="box-card">
         <template #header>
           <div class="card-header">
             <span>{{ post.title }}</span>
@@ -35,7 +39,7 @@ rootStore.getComments();
     
 -----
     <div v-for="comment in comments" :key="comment.id" class="comments">
-      <el-card v-if="$route.params.rid==comment.postId" class="box-card">
+      <el-card class="box-card">
         <template #header>
           <div  class="card-header">
             <span>{{comment.name}} {{comment.email}}</span>
