@@ -46,8 +46,16 @@ onMounted(() => {
 
 <template>
   <div class="root">
-    <div class="edit-news">
+    <div class="header">
+      <RouterLink :to="`/`">
+        <el-button class="back">
+          <el-icon :size="25"><Back /></el-icon>
+        </el-button>
+      </RouterLink>
       <h2 class="news_header">Изменить новость</h2>
+    </div>
+    <div class="edit-news">
+      
       <div class="field-name">
         <el-input
         v-model="textarea1"
@@ -73,14 +81,17 @@ onMounted(() => {
   
 <style lang="sass" scoped>
 @import ../assets/styles/main
+.header
+  display: flex
+  align-items: center
+  margin-bottom: 20px
+.back
+  font-size: 16px
+  padding: 10px 20px
+  margin-right: 20px
 .edit-news
   max-width: 600px
   margin: 0 auto
-
-.news_header
-  font-size: 24px
-  margin-bottom: 20px
-
 .update-button
   font-size: 16px
   padding: 10px 20px

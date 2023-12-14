@@ -25,8 +25,16 @@ const addNews = async () => {
 
 <template>
     <div class="root">
-        <div class="add-news">
+        <div class="header">
+            <RouterLink :to="`/`">
+              <el-button class="back">
+                <el-icon :size="25"><Back /></el-icon>
+              </el-button>
+            </RouterLink>
             <h2 class="news_header">Добавить новость</h2>
+          </div>
+        <div class="add-news">
+            
             <div class="field-name">
                 <el-input
                 v-model="textarea1"
@@ -52,13 +60,15 @@ const addNews = async () => {
 
 <style lang="sass" scoped>
 @import ../assets/styles/main
+.header
+  display: flex
+  align-items: center
+  margin-bottom: 20px
+.back
+  font-size: 16px
+  padding: 10px 20px
+  margin-right: 20px
 .add-news
   max-width: 600px
   margin: 0 auto
-
-.news_header
-  font-size: 24px
-  margin-bottom: 20px
-
-
 </style>
