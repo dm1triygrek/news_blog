@@ -56,8 +56,6 @@ if (post) {
 </template>
 
 <style lang="sass" scoped>
-@import ../assets/styles/main
-
 .header
   display: flex
   align-items: center

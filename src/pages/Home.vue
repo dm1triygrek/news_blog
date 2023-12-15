@@ -68,8 +68,6 @@ onMounted(loadPosts);
 </template>
 
 <style lang="sass" scoped>
-@import ../assets/styles/main
-
 .header
   display: flex
   justify-content: space-between

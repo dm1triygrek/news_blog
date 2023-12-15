@@ -59,7 +59,6 @@ const addNews = async () => {
 
 
 <style lang="sass" scoped>
-@import ../assets/styles/main
 .header
   display: flex
   align-items: center
