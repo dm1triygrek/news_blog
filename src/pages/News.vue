@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineProps } from 'vue';
 import { useRootStore } from '@/stores/root';
 import { storeToRefs } from 'pinia';
 import { RouterLink, useRoute } from 'vue-router';

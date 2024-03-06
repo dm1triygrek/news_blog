@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
-import { ref, defineProps } from 'vue';
+import { ref } from 'vue';
 
 const props = defineProps({
   title: String

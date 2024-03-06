@@ -3,14 +3,9 @@ import { RouterLink } from 'vue-router';
 import axios from 'axios';
 import { POSTS_URL } from '../constants';
 import { useRootStore } from '../stores/root';
+import { Post } from '../stores/root';
 
 const rootStore = useRootStore();
-
-interface Post {
-  id: number;
-  title: string;
-  body: string;
-}
 
 const props = defineProps<{
   post: Post;

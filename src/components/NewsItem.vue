@@ -1,6 +1,5 @@
 <script setup lang="ts">
-  import { defineProps } from 'vue';
-  import { Post } from '../types/types';
+  import { Post } from '../stores/root';
 
   const props = defineProps<{
     post: Post;
