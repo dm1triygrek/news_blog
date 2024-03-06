@@ -1,17 +1,16 @@
-<script setup>
+<script setup lang="ts">
+import NewsHeader from '../components/HomeNewsHeader.vue';
+import NewsList from '../components/HomeNewsList.vue';
 import { ref, onMounted } from 'vue';
-import { useRootStore } from '@/stores/root';
-import { useSharedStore } from '@/stores/root';
+import { useRootStore } from '../stores/root';
+import { useSharedStore } from '../stores/root';
 import { storeToRefs } from 'pinia';
-import { RouterLink } from 'vue-router';
-import axios from 'axios';
-import { POSTS_URL } from '../constants';
 
 const sharedStore = useSharedStore();
 const rootStore = useRootStore();
 const { posts } = storeToRefs(rootStore);
 
-const isPostsLoaded = ref(sharedStore.isPostsLoaded);
+const isPostsLoaded = ref<boolean>(sharedStore.isPostsLoaded);
 
 const loadPosts = async () => {
   if (!isPostsLoaded.value) {
@@ -20,50 +19,13 @@ const loadPosts = async () => {
   }
 };
 
-const deletePost = async (postId) => {
-  try {
-    await axios.delete(`${POSTS_URL}/${postId}`);
-    rootStore.removePost(postId);
-  } catch (error) {
-    console.error('Error deleting post:', error);
-  }
-};
-
 onMounted(loadPosts);
 </script>
 
 <template>
   <div class="root">
-    <div class="header">
-      <h1 class="news_header">Новости</h1>
-      <RouterLink :to="`/add-news`">
-        <el-button class="add_news">
-          <el-icon :size="25"><Plus /></el-icon>Добавить новость
-        </el-button>
-      </RouterLink>
-    </div>
-    <div class="news_cards">
-      <el-card v-for="post in posts" :key="post.id" class="news_card">
-        <template #header>
-          <div class="news_title">
-            <RouterLink :to="`/news/${post.id}`">
-              <span>{{ post.title }}</span>
-            </RouterLink>
-            <div class="news_buttons">
-              <RouterLink :to="`/edit-news/${post.id}`">
-                <el-button class="change_button" text>
-                  <el-icon :size="25"><Edit /></el-icon>
-                </el-button>
-              </RouterLink>
-              <el-button class="delete_button" text @click="deletePost(post.id)">
-                <el-icon :size="25"><Delete /></el-icon>
-              </el-button>
-            </div>
-          </div>
-        </template>
-        <p class="news_body">{{ post.body }}</p>
-      </el-card>
-    </div>
+    <NewsHeader />
+    <NewsList />
   </div>
 </template>
 

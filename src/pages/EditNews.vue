@@ -1,22 +1,21 @@
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import { useRootStore } from '@/stores/root';
-import { useSharedStore } from '@/stores/root';
-import { storeToRefs } from "pinia";
+import { storeToRefs } from 'pinia';
+import Header from '../components/EditHeader.vue';
+import TextareaInput from '../components/EditInput.vue';
 
 const route = useRoute();
 const router = useRouter();
-
-const sharedStore = useSharedStore();
 const rootStore = useRootStore();
 const { posts } = storeToRefs(rootStore);
 
 const postId = Number(route.params.rid);
 const post = posts.value.find(p => p.id === postId);
 
-const textarea1 = ref(post ? post.title : '')
-const textarea2 = ref(post ? post.body : '');
+const textarea1 = ref<string>(post ? post.title : '');
+const textarea2 = ref<string>(post ? post.body : '');
 
 const updateNews = async () => {
   try {
@@ -30,7 +29,6 @@ const updateNews = async () => {
       posts.value.splice(index, 1, updatedPost);
     }
 
-    sharedStore.setPostsLoaded(true);
     router.push('/');
   } catch (error) {
     console.error('Error updating post:', error);
@@ -46,33 +44,11 @@ onMounted(() => {
 
 <template>
   <div class="root">
-    <div class="header">
-      <RouterLink :to="`/`">
-        <el-button class="back">
-          <el-icon :size="25"><Back /></el-icon>
-        </el-button>
-      </RouterLink>
-      <h2 class="news_header">Изменить новость</h2>
-    </div>
+    <Header :title="post ? 'Изменить новость' : 'Загрузка...'" />
     <div class="edit-news">
-      
-      <div class="field-name">
-        <el-input
-        v-model="textarea1"
-        :autosize="{ minRows: 2, maxRows: 4 }"
-        type="textarea"
-        placeholder="Введите заголовок"
-    />
-      </div>
-      <div class="field-body">
-        <el-input
-        v-model="textarea2"
-        :autosize="{ minRows: 2, maxRows: 4 }"
-        type="textarea"
-        placeholder="Введите текст новости"
-    />
-      </div>   
-    <el-button class="update-button" @click="updateNews">Изменить новость</el-button>
+      <TextareaInput v-model:modelValue="textarea1" placeholder="Введите заголовок" />
+      <TextareaInput v-model:modelValue="textarea2" placeholder="Введите текст новости" />
+      <el-button class="update-button" @click="updateNews">Изменить новость</el-button>
     </div>
   </div>
 </template>

@@ -1,13 +1,15 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 import { useRootStore } from '@/stores/root';
 import { useRouter } from 'vue-router';
+import Header from '../components/AddHeader.vue';
+import TextInput from '../components/AddInput.vue';
 
 const router = useRouter();
 const rootStore = useRootStore();
 
-const textarea1 = ref('');
-const textarea2 = ref('');
+const textarea1 = ref<string>('');
+const textarea2 = ref<string>('');
 
 const addNews = async () => {
   try {
@@ -24,37 +26,14 @@ const addNews = async () => {
 </script>
 
 <template>
-    <div class="root">
-        <div class="header">
-            <RouterLink :to="`/`">
-              <el-button class="back">
-                <el-icon :size="25"><Back /></el-icon>
-              </el-button>
-            </RouterLink>
-            <h2 class="news_header">Добавить новость</h2>
-          </div>
-        <div class="add-news">
-            
-            <div class="field-name">
-                <el-input
-                v-model="textarea1"
-                :autosize="{ minRows: 2, maxRows: 4 }"
-                type="textarea"
-                placeholder="Введите заголовок"
-              />
-            </div>
-            <div class="field-body">
-                <el-input
-              v-model="textarea2"
-              :autosize="{ minRows: 2, maxRows: 4 }"
-              type="textarea"
-              placeholder="Введите текст новости"
-            />
-            </div>
-            <el-button @click="addNews">Добавить новость</el-button>
-          </div>
+  <div class="root">
+    <Header :title="'Добавить новость'" />
+    <div class="add-news">
+      <TextInput v-model:modelValue="textarea1" placeholder="Введите заголовок" />
+      <TextInput v-model:modelValue="textarea2" placeholder="Введите текст новости" />
+      <el-button @click="addNews">Добавить новость</el-button>
     </div>
-  
+  </div>
 </template>
 
 

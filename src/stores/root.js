@@ -1,8 +1,8 @@
-import { defineStore } from 'pinia'
-import axios from 'axios'
-import { COMMENTS_URL, POSTS_URL } from '../constants'
+import { defineStore } from "pinia";
+import axios from "axios";
+import { COMMENTS_URL, POSTS_URL } from "../constants";
 
-export const useSharedStore = defineStore('shared', {
+export const useSharedStore = defineStore("shared", {
   state: () => ({
     isPostsLoaded: false,
   }),
@@ -13,15 +13,15 @@ export const useSharedStore = defineStore('shared', {
   },
 });
 
-export const useRootStore = defineStore('root', {
+export const useRootStore = defineStore("root", {
   state: () => ({
     posts: [],
     comments: [],
   }),
   actions: {
     async getPosts() {
-      const data = await axios.get(POSTS_URL)
-      this.posts = data?.data
+      const data = await axios.get(POSTS_URL);
+      this.posts = data?.data;
     },
     async getComments(postId) {
       try {
@@ -29,7 +29,7 @@ export const useRootStore = defineStore('root', {
         const response = await axios.get(commentsUrl);
         this.comments = response.data;
       } catch (error) {
-        console.error('Error fetching comments:', error);
+        console.error("Error fetching comments:", error);
       }
     },
     async removePost(postId) {
@@ -41,7 +41,7 @@ export const useRootStore = defineStore('root', {
         const response = await axios.get(postUrl);
         return response.data;
       } catch (error) {
-        console.error('Error fetching post by ID:', error);
+        console.error("Error fetching post by ID:", error);
         return null;
       }
     },
@@ -58,7 +58,7 @@ export const useRootStore = defineStore('root', {
 
         return updatedPost;
       } catch (error) {
-        console.error('Error updating post:', error);
+        console.error("Error updating post:", error);
         return null;
       }
     },
@@ -71,9 +71,9 @@ export const useRootStore = defineStore('root', {
 
         return newPost;
       } catch (error) {
-        console.error('Error adding post:', error);
+        console.error("Error adding post:", error);
         return null;
       }
     },
   }
-})
+});

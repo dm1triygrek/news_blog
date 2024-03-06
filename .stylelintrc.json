@@ -1,0 +1,6 @@
+{ "extends": ["stylelint-config-sass-guidelines", "stylelint-sass-render-errors"],
+"rules": {
+    "plugin/sass-render-errors": true,
+    "selector-max-compound-selectors": 4
+} 
+}
