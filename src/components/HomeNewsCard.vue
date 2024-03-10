@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router';
-import axios from 'axios';
-import { POSTS_URL } from '../constants';
-import { useRootStore } from '../stores/root';
-import { Post } from '../stores/root';
+import { RouterLink } from "vue-router";
+import axios from "axios";
+import { POSTS_URL } from "../constants";
+import { useRootStore } from "../stores/root";
+import { Post } from "../stores/root";
 
 const rootStore = useRootStore();
 
@@ -16,7 +16,7 @@ const deletePost = async (postId: number) => {
     await axios.delete(`${POSTS_URL}/${postId}`);
     rootStore.removePost(postId);
   } catch (error) {
-    console.error('Error deleting post:', error);
+    console.error("Error deleting post:", error);
   }
 };
 </script>

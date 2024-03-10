@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import NewsHeader from '../components/HomeNewsHeader.vue';
-import NewsList from '../components/HomeNewsList.vue';
-import { ref, onMounted } from 'vue';
-import { useRootStore } from '../stores/root';
-import { useSharedStore } from '../stores/root';
-import { storeToRefs } from 'pinia';
+import NewsHeader from "../components/HomeNewsHeader.vue";
+import NewsList from "../components/HomeNewsList.vue";
+import { ref, onMounted } from "vue";
+import { useRootStore } from "../stores/root";
+import { useSharedStore } from "../stores/root";
+import { storeToRefs } from "pinia";
 
 const sharedStore = useSharedStore();
 const rootStore = useRootStore();

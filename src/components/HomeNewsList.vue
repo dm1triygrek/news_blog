@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import NewsCard from './HomeNewsCard.vue';
-import { useRootStore } from '../stores/root';
-import { storeToRefs } from 'pinia';
+import NewsCard from "./HomeNewsCard.vue";
+import { useRootStore } from "../stores/root";
+import { storeToRefs } from "pinia";
 
 const rootStore = useRootStore();
 const { posts } = storeToRefs(rootStore);

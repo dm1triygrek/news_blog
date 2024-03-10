@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 
 const props = defineProps({
   modelValue: String,
@@ -9,7 +8,7 @@ const props = defineProps({
 const emit = defineEmits();
 
 const updateValue = (newValue) => {
-  emit('update:modelValue', newValue);
+  emit("update:modelValue", newValue);
 };
 </script>
 

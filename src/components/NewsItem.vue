@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { Post } from '../stores/root';
+  import { Post } from "../stores/root";
 
   const props = defineProps<{
     post: Post;

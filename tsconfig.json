@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+      "esModuleInterop": true,
+      "module": "NodeNext",
+      "outDir": "./built",
+      "allowJs": true,
+      "target": "ESNext",
+    },
+    "include": ["./src/**/*", "__tests__/root.test.ts"]
+  }

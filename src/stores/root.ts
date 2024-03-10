@@ -2,13 +2,13 @@ import { defineStore } from "pinia";
 import axios from "axios";
 import { COMMENTS_URL, POSTS_URL } from "../constants";
 
-interface Post {
+export interface Post {
     id: number;
     title: string;
     body: string;
 }
 
-interface Comment {
+export interface Comment {
     id: number;
     postId: number;
     name: string;
@@ -16,7 +16,7 @@ interface Comment {
     body: string;
 }
 
-interface RootState {
+export interface RootState {
   posts: Post[];
   comments: Comment[];
 }

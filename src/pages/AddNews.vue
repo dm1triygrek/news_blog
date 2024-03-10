@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { useRootStore } from '@/stores/root';
-import { useRouter } from 'vue-router';
-import Header from '../components/AddHeader.vue';
-import TextInput from '../components/AddInput.vue';
+import { ref } from "vue";
+import { useRootStore } from "../stores/root";
+import { useRouter } from "vue-router";
+import Header from "../components/AddHeader.vue";
+import TextInput from "../components/AddInput.vue";
 
 const router = useRouter();
 const rootStore = useRootStore();
 
-const textarea1 = ref<string>('');
-const textarea2 = ref<string>('');
+const textarea1 = ref<string>("");
+const textarea2 = ref<string>("");
 
 const addNews = async () => {
   try {
@@ -18,9 +18,9 @@ const addNews = async () => {
       body: textarea2.value,
     });
 
-    router.push('/');
+    router.push("/");
   } catch (error) {
-    console.error('Error adding post:', error);
+    console.error("Error adding post:", error);
   }
 };
 </script>

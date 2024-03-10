@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useRootStore } from '@/stores/root';
-import { storeToRefs } from 'pinia';
-import { RouterLink, useRoute } from 'vue-router';
-import NewsHeader from '../components/NewsHeader.vue';
-import NewsItem from '../components/NewsItem.vue';
-import CommentItem from '../components/NewsCommentItem.vue';
+import { useRootStore, Post } from "../stores/root";
+import { storeToRefs } from "pinia";
+import { useRoute } from "vue-router";
+import NewsHeader from "../components/NewsHeader.vue";
+import NewsItem from "../components/NewsItem.vue";
+import CommentItem from "../components/NewsCommentItem.vue";
 
 const route = useRoute();
 const rootStore = useRootStore();

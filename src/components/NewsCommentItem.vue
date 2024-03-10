@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { Comment } from '../stores/root';
+  import { Comment } from "../stores/root";
   
 const props = defineProps<{
 comment: Comment;

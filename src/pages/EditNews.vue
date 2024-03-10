@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
-import { useRootStore } from '@/stores/root';
-import { storeToRefs } from 'pinia';
-import Header from '../components/EditHeader.vue';
-import TextareaInput from '../components/EditInput.vue';
+import { ref, onMounted } from "vue";
+import { useRouter, useRoute } from "vue-router";
+import { useRootStore } from "../stores/root";
+import { storeToRefs } from "pinia";
+import Header from "../components/EditHeader.vue";
+import TextareaInput from "../components/EditInput.vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -14,10 +14,15 @@ const { posts } = storeToRefs(rootStore);
 const postId = Number(route.params.rid);
 const post = posts.value.find(p => p.id === postId);
 
-const textarea1 = ref<string>(post ? post.title : '');
-const textarea2 = ref<string>(post ? post.body : '');
+const textarea1 = ref<string>(post ? post.title : "");
+const textarea2 = ref<string>(post ? post.body : "");
 
 const updateNews = async () => {
+  const currentPost = post;
+  if (!currentPost) {
+    return;
+  }
+
   try {
     const updatedPost = await rootStore.updatePost(postId, {
       title: textarea1.value,
@@ -29,9 +34,9 @@ const updateNews = async () => {
       posts.value.splice(index, 1, updatedPost);
     }
 
-    router.push('/');
+    router.push("/");
   } catch (error) {
-    console.error('Error updating post:', error);
+    console.error("Error updating post:", error);
   }
 };
 
