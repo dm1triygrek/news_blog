@@ -9,11 +9,9 @@
 <template>
     <div class="addit_news">
       <el-card class="news-card">
-        <template #header>
           <div class="news-card-header">
             <span>{{ post.title }}</span>
           </div>
-        </template>
         <p>{{ post.body }}</p>
       </el-card>
     </div>

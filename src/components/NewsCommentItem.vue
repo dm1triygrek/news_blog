@@ -9,12 +9,10 @@ comment: Comment;
 
 <template>
     <el-card class="comment-card">
-      <template #header>
         <div class="comment-card-header">
           <span class="comment-name">{{ comment.name }}</span>
           <span class="comment-email">{{ comment.email }}</span>
         </div>
-      </template>
       <p class="comment-text">{{ comment.body }}</p>
     </el-card>
   </template>
