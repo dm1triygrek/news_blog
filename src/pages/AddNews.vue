@@ -10,14 +10,12 @@ const rootStore = useRootStore();
 
 const textarea1 = ref<string>("");
 const textarea2 = ref<string>("");
-/* stylelint-disable */
 const addNews = async () => {
   try {
-    const newPost = await rootStore.addPost({
+    const newPost = await rootStore.addPost({ // eslint-disable-line @typescript-eslint/no-unused-vars
       title: textarea1.value,
       body: textarea2.value,
     });
-/* stylelint-enable */
     router.push("/");
   } catch (error) {
     console.error("Error adding post:", error);

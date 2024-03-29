@@ -1,9 +1,9 @@
 <script setup>
-import { RouterView } from "vue-router";
+/* stylelint-disable-line */
+import { RouterView } from "vue-router"; 
 </script>
 
 <template>
-
   <RouterView />
 </template>
 

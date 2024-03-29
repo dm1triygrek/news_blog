@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
-/* stylelint-disable */
-const props = defineProps({
+const props = defineProps({ // eslint-disable-line @typescript-eslint/no-unused-vars
   title: String
 });
 </script>
-/* stylelint-enable */
 <template>
     <div class="header">
       <RouterLink :to="`/`">

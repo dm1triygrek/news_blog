@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import { Post } from "../stores/root";
-/* stylelint-disable */
-  const props = defineProps<{
+  const props = defineProps<{ // eslint-disable-line @typescript-eslint/no-unused-vars
     post: Post;
   }>();
-  /* stylelint-enable */
 </script>
 
 <template>

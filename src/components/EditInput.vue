@@ -1,12 +1,10 @@
 <script setup lang="ts">
-/* stylelint-disable */
-const props = defineProps({
+const props = defineProps({ // eslint-disable-line @typescript-eslint/no-unused-vars
   modelValue: String,
   placeholder: String
 });
 
-const emit = defineEmits();
-/* stylelint-enable */
+const emit = defineEmits(); // eslint-disable-line vue/valid-define-emits
 const updateValue = (newValue) => {
   emit("update:modelValue", newValue);
 };

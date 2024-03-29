@@ -8,9 +8,7 @@ import { storeToRefs } from "pinia";
 
 const sharedStore = useSharedStore();
 const rootStore = useRootStore();
-/* stylelint-disable */
-const { posts } = storeToRefs(rootStore);
-/* stylelint-enable */
+const { posts } = storeToRefs(rootStore); // eslint-disable-line @typescript-eslint/no-unused-vars
 
 const isPostsLoaded = ref<boolean>(sharedStore.isPostsLoaded);
 

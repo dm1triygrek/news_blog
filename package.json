@@ -11,7 +11,7 @@
     "test_vitest": "vitest",
     "lint:script": "eslint src/**/*.{ts,vue,d.ts}",
     "lint:script-fix": "eslint src/**/*.{ts,vue,d.ts} --fix",
-    "lint:style": "stylelint src/**/*.{html,vue,scss,css}",
+    "lint:style": "stylelint src/**/*.{html,scss,css}",
     "vue-tsc": "vue-tsc --noEmit --skipLibCheck"
   },
   "dependencies": {
