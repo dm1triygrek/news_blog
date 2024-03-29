@@ -1,27 +1,26 @@
 <script setup lang="ts">
-  import { Post } from "../stores/root";
-
+import { Post } from "../stores/root";
+/* stylelint-disable */
   const props = defineProps<{
     post: Post;
   }>();
+  /* stylelint-enable */
 </script>
 
 <template>
-    <div class="addit_news">
       <el-card class="news-card">
-          <div class="news-card-header">
-            <span>{{ post.title }}</span>
+          <div class="news-card__header">
+            <h5 class="news-card__title">{{ post.title }}</h5>
           </div>
         <p>{{ post.body }}</p>
       </el-card>
-    </div>
   </template>
   
   <style scoped>
-  .addit_news {
-    margin-top: 20px;
+  .news-card__title {
+    font-size: 16px
   }
-  
+
   .news-card {
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -29,7 +28,7 @@
     margin-bottom: 20px;
   }
   
-  .news-card-header {
+  .news-card__header {
     padding: 10px;
     background-color: #f0f0f0;
   }

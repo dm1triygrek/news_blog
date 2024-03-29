@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import Home from "../pages/Home.vue";
-import News from "../pages/News.vue";
+import HomePage from "../pages/HomePage.vue";
+import NewsPage from "../pages/NewsPage.vue";
 import EditNews from "../pages/EditNews.vue";
 import AddNews from "../pages/AddNews.vue";
 
@@ -8,12 +8,12 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/",
     name: "home",
-    component: Home
+    component: HomePage
   },
   {
     path: "/news/:rid",
     name: "news",
-    component: News
+    component: NewsPage
   },
   {
     path: "/edit-news/:rid",
@@ -28,7 +28,7 @@ const routes: RouteRecordRaw[] = [
 ];
 
 const router = createRouter({
-  //@ts-expect-error
+  //@ts-expect-error Неправильная интерпретация ошибки
   history: createWebHistory(import.meta.env.BASE_URL),
   routes
 });

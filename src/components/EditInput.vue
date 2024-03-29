@@ -1,12 +1,12 @@
 <script setup lang="ts">
-
+/* stylelint-disable */
 const props = defineProps({
   modelValue: String,
   placeholder: String
 });
 
 const emit = defineEmits();
-
+/* stylelint-enable */
 const updateValue = (newValue) => {
   emit("update:modelValue", newValue);
 };

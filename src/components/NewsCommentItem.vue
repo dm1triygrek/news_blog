@@ -1,9 +1,10 @@
 <script setup lang="ts">
-  import { Comment } from "../stores/root";
-  
+import { Comment } from "../stores/root";
+/* stylelint-disable */
 const props = defineProps<{
 comment: Comment;
 }>();
+/* stylelint-enable */
 </script>
 
 

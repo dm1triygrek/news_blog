@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
-
+/* stylelint-disable */
 const props = defineProps({
   title: String
 });
 </script>
-
+/* stylelint-enable */
 <template>
     <div class="header">
       <RouterLink :to="`/`">

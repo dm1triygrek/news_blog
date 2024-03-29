@@ -3,13 +3,11 @@ import { RouterLink } from "vue-router";
 import axios from "axios";
 import { POSTS_URL } from "../constants";
 import { useRootStore } from "../stores/root";
-import { Post } from "../stores/root";
+import { storeToRefs } from "pinia";
 
 const rootStore = useRootStore();
 
-const props = defineProps<{
-  post: Post;
-}>();
+const { posts } = storeToRefs(rootStore);
 
 const deletePost = async (postId: number) => {
   try {
@@ -22,7 +20,8 @@ const deletePost = async (postId: number) => {
 </script>
 
 <template>
-  <el-card v-if="post" :key="post.id" class="news_card">
+  <div class="news_cards">
+    <el-card v-for="post in posts" :key="post.id" class="news_card">
     <template #header>
       <div class="news_title">
         <RouterLink :to="`/news/${post.id}`">
@@ -42,9 +41,16 @@ const deletePost = async (postId: number) => {
     </template>
     <p class="news_body">{{ post.body }}</p>
   </el-card>
+  </div>
+  
 </template>
 
 <style lang="sass" scoped>
+.news_cards
+  display: grid
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr))
+  gap: 20px
+
 .news_card
   border: 1px solid #ccc
   border-radius: 8px

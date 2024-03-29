@@ -3,7 +3,7 @@ import { ref, onMounted } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { useRootStore } from "../stores/root";
 import { storeToRefs } from "pinia";
-import Header from "../components/EditHeader.vue";
+import EditHeader from "../components/EditHeader.vue";
 import TextareaInput from "../components/EditInput.vue";
 
 const route = useRoute();
@@ -49,7 +49,7 @@ onMounted(() => {
 
 <template>
   <div class="root">
-    <Header :title="post ? 'Изменить новость' : 'Загрузка...'" />
+    <EditHeader :title="post ? 'Изменить новость' : 'Загрузка...'" />
     <div class="edit-news">
       <TextareaInput v-model:modelValue="textarea1" placeholder="Введите заголовок" />
       <TextareaInput v-model:modelValue="textarea2" placeholder="Введите текст новости" />
@@ -58,17 +58,7 @@ onMounted(() => {
   </div>
 </template>
   
-
-  
 <style lang="sass" scoped>
-.header
-  display: flex
-  align-items: center
-  margin-bottom: 20px
-.back
-  font-size: 16px
-  padding: 10px 20px
-  margin-right: 20px
 .edit-news
   max-width: 600px
   margin: 0 auto

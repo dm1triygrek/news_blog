@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
-
+/* stylelint-disable */
 const props = defineProps({
   title: String
 });
+/* stylelint-enable */
 </script>
 
 <template>
