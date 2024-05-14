@@ -20,8 +20,7 @@ const handleInput = (newValue) => {
   </div>
 </template>
 
-<style scoped>
-.field {
-  margin-bottom: 20px;
-}
+<style lang="sass" scoped>
+.field 
+  margin-bottom: 20px
 </style>

@@ -64,40 +64,34 @@ onMounted(loadPosts);
   </div>
 </template>
 
-<style lang="scss" scoped>
-.news-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-}
+<style lang="sass" scoped>
+.news-cards
+  display: grid
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr))
+  gap: 20px
 
-.news-card {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: box-shadow 0.3s;
+  .news-card
+    border: 1px solid #ccc
+    border-radius: 8px
+    overflow: hidden
+    cursor: pointer
+    transition: box-shadow 0.3s
 
-  &:hover {
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-  }
-}
+    &:hover
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3)
 
-.news-card__title {
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #f0f0f0;
-}
+  .news-card__title
+    padding: 10px
+    display: flex
+    justify-content: space-between
+    align-items: center
+    background-color: #f0f0f0
 
-.news-card__buttons {
-  display: flex;
-  gap: 10px;
-}
+  .news-card__buttons
+    display: flex
+    gap: 10px
 
-.news-card__button {
-  font-size: 16px;
-  padding: 5px 10px;
-}
+  .news-card__button
+    font-size: 16px
+    padding: 5px 10px
 </style>
