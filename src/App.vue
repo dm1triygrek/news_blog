@@ -1,5 +1,4 @@
 <script setup>
-/* stylelint-disable-line */
 import { RouterView } from "vue-router"; 
 </script>
 

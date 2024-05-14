@@ -2,9 +2,8 @@
 import { useRootStore, Post } from "../stores/root";
 import { storeToRefs } from "pinia";
 import { useRoute } from "vue-router";
-import NewsHeader from "../components/NewsHeader.vue";
-import NewsItem from "../components/NewsItem.vue";
-import NewsCommentItem from "../components/NewsCommentItem.vue";
+import AppHeader from "../components/common/AppHeader.vue";
+import NewsCommentItem from "../components/news/NewsCommentItem.vue";
 
 const route = useRoute();
 const rootStore = useRootStore();
@@ -21,15 +20,15 @@ if (post) {
 
 <template>
   <div class="root">
-    <NewsHeader />
-    <NewsItem v-if="post" :post="post" />
+    <AppHeader :headerText="post.title" :show-add-button="false" :show-back-button="true" />
+    <el-card class="news-card">
+      <p>{{ post.body }}</p>
+    </el-card>
     <h1 class="news-header">Комментарии</h1>
     <NewsCommentItem v-for="comment in comments" :key="comment.id" :comment="comment" />
   </div>
 </template>
 
 <style lang="sass" scoped>
-.news-card-header
-  padding: 10px
-  background-color: #f0f0f0
+
 </style>

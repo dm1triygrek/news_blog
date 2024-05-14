@@ -2,41 +2,47 @@
 import { ref } from "vue";
 import { useRootStore } from "../stores/root";
 import { useRouter } from "vue-router";
-import AddHeader from "../components/AddHeader.vue";
-import TextInput from "../components/AddInput.vue";
+import AppHeader from "../components/common/AppHeader.vue";
+import NewsForm from "../components/common/NewsForm.vue";
 
 const router = useRouter();
 const rootStore = useRootStore();
 
-const textarea1 = ref<string>("");
-const textarea2 = ref<string>("");
+const title = ref<string>("");
+const text = ref<string>("");
+
 const addNews = async () => {
   try {
+    if (!title.value.trim() || !text.value.trim()) {
+      throw new Error("Заголовок и текст новости не могут быть пустыми");
+    }
     const newPost = await rootStore.addPost({ // eslint-disable-line @typescript-eslint/no-unused-vars
-      title: textarea1.value,
-      body: textarea2.value,
+      title: title.value,
+      body: text.value,
     });
     router.push("/");
   } catch (error) {
-    console.error("Error adding post:", error);
+    console.error("Ошибка добавления новости:", error.message);
   }
 };
 </script>
 
 <template>
-  <div class="root">
-    <AddHeader :title="'Добавить новость'" />
-    <div class="add-news">
-      <TextInput v-model:modelValue="textarea1" placeholder="Введите заголовок" />
-      <TextInput v-model:modelValue="textarea2" placeholder="Введите текст новости" />
+  <div class="add-news">
+    <AppHeader headerText="Добавить новость" :show-add-button="false" :show-back-button="true" />
+    <div class="add-news__textarea">
+      <el-input class="add-news__textarea-title" v-model="title" :autosize="{ minRows: 2, maxRows: 4 }" type="textarea" placeholder="Введите заголовок" />
+      <NewsForm v-model:modelValue="text" placeholder="Введите текст новости" />
       <el-button @click="addNews">Добавить новость</el-button>
     </div>
   </div>
 </template>
 
-
 <style lang="sass" scoped>
-.add-news
+.add-news__textarea
   max-width: 600px
   margin: 0 auto
+
+.add-news__textarea-title
+  margin-bottom: 20px
 </style>

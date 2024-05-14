@@ -3,8 +3,8 @@ import { ref, onMounted } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { useRootStore } from "../stores/root";
 import { storeToRefs } from "pinia";
-import EditHeader from "../components/EditHeader.vue";
-import TextareaInput from "../components/EditInput.vue";
+import AppHeader from "../components/common/AppHeader.vue";
+import NewsForm from "../components/common/NewsForm.vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -14,8 +14,8 @@ const { posts } = storeToRefs(rootStore);
 const postId = Number(route.params.rid);
 const post = posts.value.find(p => p.id === postId);
 
-const textarea1 = ref<string>(post ? post.title : "");
-const textarea2 = ref<string>(post ? post.body : "");
+const title = ref<string>(post ? post.title : "");
+const text = ref<string>(post ? post.body : "");
 
 const updateNews = async () => {
   const currentPost = post;
@@ -25,8 +25,8 @@ const updateNews = async () => {
 
   try {
     const updatedPost = await rootStore.updatePost(postId, {
-      title: textarea1.value,
-      body: textarea2.value,
+      title: title.value,
+      body: text.value,
     });
 
     const index = posts.value.findIndex(p => p.id === postId);
@@ -48,22 +48,21 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="root">
-    <EditHeader :title="post ? 'Изменить новость' : 'Загрузка...'" />
-    <div class="edit-news">
-      <TextareaInput v-model:modelValue="textarea1" placeholder="Введите заголовок" />
-      <TextareaInput v-model:modelValue="textarea2" placeholder="Введите текст новости" />
-      <el-button class="update-button" @click="updateNews">Изменить новость</el-button>
+  <div class="edit-news">
+    <AppHeader headerText="Изменить новость" :show-add-button="false" :show-back-button="true" />
+    <div class="edit-news__textarea">
+      <el-input class="edit-news__textarea-title" v-model="title" :autosize="{ minRows: 2, maxRows: 4 }" type="textarea" placeholder="Введите заголовок" />
+      <NewsForm v-model:modelValue="text" placeholder="Введите текст новости" />
+      <el-button @click="updateNews">Изменить новость</el-button>
     </div>
   </div>
 </template>
-  
+
 <style lang="sass" scoped>
-.edit-news
+.edit-news__textarea
   max-width: 600px
   margin: 0 auto
-.update-button
-  font-size: 16px
-  padding: 10px 20px
 
+.edit-news__textarea-title
+  margin-bottom: 20px
 </style>

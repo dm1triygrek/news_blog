@@ -1,6 +1,11 @@
-{ "extends": ["stylelint-config-sass-guidelines", "stylelint-sass-render-errors"],
+{ 
+"extends": ["stylelint-config-sass-guidelines", "stylelint-sass-render-errors", "stylelint-config-standard"],
+"ignoreFiles": [
+    "**/*.vue"
+  ],
 "rules": {
     "plugin/sass-render-errors": true,
-    "selector-max-compound-selectors": 4
+    "selector-max-compound-selectors": 4,
+    "block-no-empty": true
 } 
 }
