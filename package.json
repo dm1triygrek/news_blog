@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "vite",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "build": "vite build",
     "preview": "vite preview",
     "test_jest": "jest",
@@ -38,6 +40,7 @@
     "@vue/vue3-jest": "^29.2.6",
     "eslint": "^8.57.0",
     "eslint-plugin-vue": "^9.22.0",
+    "gh-pages": "^6.1.1",
     "jest": "^29.7.0",
     "postcss": "^8.4.35",
     "postcss-html": "^1.6.0",
