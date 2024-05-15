@@ -20,10 +20,11 @@ const addNews = async () => {
       title: title.value,
       body: text.value,
     });
-    router.push("/");
+    
   } catch (error) {
     console.error("Ошибка добавления новости:", error.message);
   }
+  router.push("/");
 };
 </script>
 
